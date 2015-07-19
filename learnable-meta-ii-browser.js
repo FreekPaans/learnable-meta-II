@@ -12,16 +12,17 @@ $(function() {
 
 	var $code = $("#code");
 	var $compiler = $("#compiler");
-	var $interpreter = $("#interpreter");
+	var $vm = $("#vm");
 	var $output = $("#output");
 
-	$code.on("input", function() {
-		console.log("re-interpreting")
-		interpret();
-	})
+	$.each([$code,$compiler,$vm],function(idx,$el) {
+		$el.on("input", function() {
+			interpret();
+		})
+	});
 
-	var getInterpreter = function() {
-		var interpreter = ("(function(module,window) {\n" + $interpreter.val() + "\n})");
+	var getVM = function() {
+		var vm = ("(function(module,window) {\n" + $vm.val() + "\n})");
 
 		var module = {};
 		var errorHandler = {
@@ -30,15 +31,15 @@ $(function() {
 			}
 		}
 
-		eval(interpreter)(module,errorHandler)
+		eval(vm)(module,errorHandler)
 
 		return module.exports;
 	}
 
 	var interpret = function() {
-		var interpreter = getInterpreter();
+		var vm = getVM();
 
-		var output = interpreter($code.val(),$compiler.val())
+		var output = vm($code.val(),$compiler.val())
 
 		$output.text(output)
 	}
@@ -46,7 +47,7 @@ $(function() {
 	$.when(
 			loadCodeToTextarea("test.aexp", $code),
 			loadCodeToTextarea("aexp-compiler.vm",$compiler),
-			loadCodeToTextarea("meta-II-vm-interpreter.js",$interpreter))
+			loadCodeToTextarea("meta-II-vm-interpreter.js",$vm))
 		.done(function() {
 			interpret();
 	})
