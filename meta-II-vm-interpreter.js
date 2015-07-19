@@ -510,8 +510,11 @@ function StartIntCompile()
   Interpret() ;
 } ;
 
-window = {
-  alert: function(msg) {
+if(!window) {
+  window = {}
+}
+if(!window.alert) {
+  window.alert = function(msg) {
     console.warn(msg);
   }
 }
