@@ -12,7 +12,7 @@ fs.readFile(sourceFile, "utf8", function(err, source) {
 		process.exit(1)
 	}
 
-	fs.readFile(compilerFile, function(err, compiler) {
+	fs.readFile(compilerFile, "utf8", function(err, compiler) {
 		if(err) {
 			console.error("Failed reading compiler file " + err)
 			process.exit(1)

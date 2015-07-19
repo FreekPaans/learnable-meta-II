@@ -10,6 +10,7 @@ fs.readFile(sourceFile, "utf8", function(err, result) {
 		console.error("Failed reading file " + err)
 		process.exit(1)
 	}
+
 	var compiled = compiler(result);
-	console.log(compiled)
+	console.log(compiled.result)
 });

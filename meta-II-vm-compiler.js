@@ -520,6 +520,8 @@ module.exports = function(code, compiler) {
   inbuf = code;
   ic = compiler;
 
+  StartIntCompile()
+
   return outbuf;
 }
 /* end interpreter support */

@@ -1,8 +1,10 @@
 module.exports = function(input) {
     var c = new compiler();
-    var result = c.compile(input)
-    console.log(c.outbuf)
-    return result;
+    var result = c.compile(input);
+    return {
+      failed: result,
+      result: c.outbuf
+    }
 }
 
 var compiler = function() {}
