@@ -1,11 +1,14 @@
 module.exports = function(input) {
-    var result = compiler.compile(input)
-    console.log(compiler.outbuf)
+    var c = new compiler();
+    var result = c.compile(input)
+    console.log(c.outbuf)
     return result;
 }
 
+var compiler = function() {}
+
 // PROGRAM compiler
-var compiler = {
+compiler.prototype = {
 
   compile: function (input) {
     // initialize compiler variables
