@@ -24,8 +24,13 @@ $(function() {
 		var interpreter = ("(function(module,window) {\n" + $interpreter.val() + "\n})");
 
 		var module = {};
+		var errorHandler = {
+			alert: function() {
+				console.log(arguments)
+			}
+		}
 
-		eval(interpreter)(module,window)
+		eval(interpreter)(module,errorHandler)
 
 		return module.exports;
 	}
@@ -33,10 +38,8 @@ $(function() {
 	var interpret = function() {
 		var interpreter = getInterpreter();
 
-		console.log("Code: %s", $code.val())
-
 		var output = interpreter($code.val(),$compiler.val())
-		console.log(output)
+
 		$output.text(output)
 	}
 
