@@ -485,7 +485,12 @@ function Interpret ()
   exitlevel = false ;
   while (true) {
     // skip to the next operator which is prefaced by a '\t' 
-    while (ic.charAt(pc) != '\t') pc++ ;
+    while (ic.charAt(pc) != '\t') {
+      if(pc>=ic.length) {
+        return;
+      }
+      pc++ ;
+    }
     pc++ ;
     InterpretOp() ;
     if (exitlevel) return ;

@@ -12,13 +12,32 @@ $(function() {
 
 	var $code = $("#code");
 	var $compiler = $("#compiler");
+	var $language = $("#language");
+
+	var $metaII = $("#metaII");
+
 	var $vm = $("#vm");
+
 	var $output = $("#output");
 
 	$.each([$code,$compiler,$vm],function(idx,$el) {
 		$el.on("input", function() {
+			console.log('input')
+			console.log($el)
 			interpret();
 		})
+	});
+
+	$.each([$metaII, $language], function(idx, $el) {
+		$el.on("input", function() {
+			var vm = getVM();
+
+			var out = vm($language.val(), $metaII.val());
+
+			$compiler.val(out);
+
+			interpret();
+		});
 	});
 
 	var getVM = function() {
@@ -37,7 +56,7 @@ $(function() {
 	}
 
 	var interpret = function() {
-		var vm = getVM();
+		vm = getVM();
 
 		var output = vm($code.val(),$compiler.val())
 
@@ -47,7 +66,10 @@ $(function() {
 	$.when(
 			loadCodeToTextarea("test.aexp", $code),
 			loadCodeToTextarea("aexp-compiler.vm",$compiler),
-			loadCodeToTextarea("meta-II-vm-interpreter.js",$vm))
+			loadCodeToTextarea("meta-II-vm-interpreter.js",$vm),
+			loadCodeToTextarea("aexp-to-vm.metaII",$language),
+			loadCodeToTextarea("metaII.vm",$metaII)
+			)
 		.done(function() {
 			interpret();
 	})

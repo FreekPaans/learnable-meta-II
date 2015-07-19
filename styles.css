@@ -13,8 +13,15 @@ html,body { height: 100%; margin: 0px; padding: 0px; }
     box-sizing: border-box;
 
 }
-div.col2 { 
+div.col6 { 
 	width: 50%;
 	height: 100%;
 	float:left;
 }
+
+div.col4 { 
+	width: 33%;
+	height: 100%;
+	float:left;
+}
+
