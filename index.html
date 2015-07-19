@@ -4,44 +4,24 @@
 <title>Learnable Meta-II</title>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="learnable-meta-ii-browser.js"></script>
-<style type="text/css">
-	textarea {
-		position: absolute;
-
-	}
-	#code {
-		width: 50%;
-		left: 0px;
-		top: 0px;
-		height: 50%;
-	}
-	#compiler {
-		width: 50%;
-		height: 50%;
-		top: 0px;
-		left: 50%;
-	}
-
-	#vm {
-		width: 50%;
-		height: 50%;
-		top: 50%;
-		left: 0px;	
-	}
-
-	#output {
-		width: 50%;
-		height: 50%;
-		top: 50%;
-		left: 50%;	
-	}
-
-</style>
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<textarea id="code"></textarea>
-<textarea id="compiler"></textarea>
-<textarea id="vm"></textarea>
-<textarea id="output"></textarea>
+<div class="col2">
+	<div class="code-pane">
+		<textarea id="code"></textarea>
+	</div>
+	<div class="code-pane">
+		<textarea id="vm"></textarea>
+	</div>
+</div>
+<div class="col2">
+	<div class="code-pane">
+		<textarea id="compiler"></textarea>
+	</div>
+	<div class="code-pane">
+		<textarea id="output"></textarea>
+	</div>
+</div>
 </body>
 </html>
